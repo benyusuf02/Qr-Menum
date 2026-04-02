@@ -19,27 +19,50 @@ Modern, multi-tenant (çoklu kiracı) mimariye sahip yüksek performanslı Dijit
 - **Frontend / Menü:** HTML5, Modern SSR (Razor), Vanilla CSS & JS
 - **Barkod Üretici:** QRCoder
 
-## 🚀 Başlangıç
+## 🚀 Kurulum & Başlangıç Rehberi
 
-### Geliştirme Ortamı (Development)
-Projeyi lokal bilgisayarınızda çalıştırmak için:
+Projeyi yerel cihazınızda (lokal ortamda) sorunsuz bir şekilde çalıştırmak ve geliştirmek için aşağıdaki adımları sırasıyla uygulayın.
 
-1. **Gereksinimler:**
-   - [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-   - MSSQL LocalDB (veya SQLite)
+### 1. Sistem Gereksinimleri
+- [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) (Core Framework)
+- MsSQL LocalDB (Visual Studio ile birlikte gelir) veya SQLite
+- Git
 
-2. **Veritabanının Hazırlanması:**
+### 2. Projeyi Bilgisayarınıza İndirin (Clone)
+Terminalinizi açın ve Github deposunu bilgisayarınıza indirin:
+```bash
+git clone https://github.com/benyusuf02/Qr-Menum.git
+cd Qr-Menum
+```
+
+### 3. Bağımlılıkları Yükleyin (Restore)
+.NET paketlerini (Entity Framework vb.) indirmek için aşağıdaki komutu çalıştırın:
+```bash
+dotnet restore QrMenu.sln
+```
+
+### 4. Veritabanının Hazırlanması ve Demo Verilerin Yüklenmesi
+Uygulama arka planda bir SQL veritabanına ihtiyaç duyar. Tabloları oluşturmak için Entity Framework Core CLI aracıyla aşağıdaki Migration işlemini çalıştırın:
 ```bash
 dotnet ef database update --project src/QrMenu.Infrastructure --startup-project src/QrMenu.API
 ```
+*Not: Eğer yukarıdaki komut hata verirse önce `dotnet tool install --global dotnet-ef` komutuyla EF Core araçlarını sisteminize kurduğunuzdan emin olun.*
 
-3. **Uygulamanın Çalıştırılması:**
+Sistem ayağa kalktığında tablolarda hiç işlem yapılmamışsa, "Gurme Cafe & Burger" üzerinden **otomatik olarak resimli, Türkçe-İngilizce ve Arapça dillerinde eksiksiz demo verisi eklenecektir.**
+
+### 5. Uygulamanın Başlatılması
+Projeyi Hot Reload (Anında Yenileme) özelliğiyle başlatıp kod yazarken anlık test etmek için API klasöründe şu komutu çalıştırın:
 ```bash
-# Otomatik yenileme ile başlatır
-dotnet watch run --project src/QrMenu.API/QrMenu.API.csproj --launch-profile http
+cd src/QrMenu.API
+dotnet watch run --launch-profile http
 ```
 
-API ve Yönetim Paneli default olarak `http://localhost:5126` üzerinden hizmet verir. Süper Admin hesabı veritabanı oluştuğu anda `admin@qrmenu.com` / `qrmenu2024` olarak otomatik kurulur.
+### 6. Test ve Yönetim
+- **Müşteri Demo Menüsü:** `http://localhost:5126/m/demo-cafe` adresinden yeni tasarlanan harika "Glassmorphism" menüyü deneyimleyebilirsiniz.
+- **Süper Admin Hesabı:** Proje kurulduğunda otomatik olarak bir yönetici hesabı oluşturulur.
+  - E-Posta: `admin@qrmenu.com`
+  - Şifre: `qrmenu2024`
+
 
 ## 📂 Proje Mimarisi (Clean Architecture)
 
