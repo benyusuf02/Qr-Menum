@@ -53,4 +53,4 @@ API ve Yönetim Paneli default olarak `http://localhost:5126` üzerinden hizmet 
 Digital menü arayüzü `http://localhost:5126/m/{restoran-slug}` adresinden host edilir. URL üzerinden dil parametreleri `?lang=en` ile tetiklenebilir. Masa numarası eklentisi mevcuttur.
 
 ---
-*Powered by B.Y.*
+*Powered by Yusuf Çukurlu*
