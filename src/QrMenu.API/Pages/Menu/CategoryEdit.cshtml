@@ -1,0 +1,30 @@
+﻿@page
+@model QrMenu.API.Pages.Menu.CategoryEditModel
+@{
+    ViewData["Title"] = Model.IsNew ? "Yeni Kategori" : "Kategori Düzenle";
+}
+
+<div class="card" style="max-width:500px">
+    <form method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label>Kategori Adı</label>
+            <input asp-for="Name" placeholder="örn: Ana Yemekler" />
+        </div>
+        <div class="form-group">
+            <label>Sıra</label>
+            <input asp-for="SortOrder" type="number" />
+        </div>
+        <div class="form-group">
+            <label>Durum</label>
+            <select asp-for="IsActive">
+                <option value="true">Aktif</option>
+                <option value="false">Pasif</option>
+            </select>
+        </div>
+        <div style="display:flex;gap:8px">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <a href="/Menu/Categories" class="btn">İptal</a>
+        </div>
+    </form>
+</div>

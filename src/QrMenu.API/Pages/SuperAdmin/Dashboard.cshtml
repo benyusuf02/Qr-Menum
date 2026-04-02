@@ -1,0 +1,30 @@
+@page
+@model QrMenu.API.Pages.SuperAdmin.DashboardModel
+@{
+    Layout = "/Pages/SuperAdmin/_Layout.cshtml";
+    ViewData["Title"] = "Genel Bakış";
+}
+
+<div class="stat-grid">
+    <div class="stat-card">
+        <div class="num">@Model.ToplamTenant</div>
+        <div class="lbl">Toplam Tenant</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">@Model.AktifTenant</div>
+        <div class="lbl">Aktif Tenant</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">@Model.ToplamKullanici</div>
+        <div class="lbl">Restoran Sahibi</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">@Model.ToplamUrun</div>
+        <div class="lbl">Toplam Ürün</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-title">Hızlı Erişim</div>
+    <a href="/SuperAdmin/Tenants" class="btn btn-success">Tenant Listesi →</a>
+</div>

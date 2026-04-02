@@ -1,0 +1,55 @@
+﻿@page
+@model QrMenu.API.Pages.Menu.ItemsModel
+@{
+    ViewData["Title"] = "Ürünler";
+}
+
+<div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div class="card-title" style="margin:0">
+            @Model.CategoryName — Ürünler
+        </div>
+        <div style="display:flex;gap:8px">
+            <a href="/Menu/Categories" class="btn">← Kategoriler</a>
+            <a href="/Menu/ItemEdit?catId=@Model.CategoryId" class="btn btn-primary">+ Yeni Ürün</a>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Fiyat</th>
+                <th>Durum</th>
+                <th>Rozetler</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <div style="font-weight:500">@item.Name</div>
+                        <div style="font-size:12px;color:#777">@item.Description</div>
+                    </td>
+                    <td>₺@item.Price.ToString("0.00")</td>
+                    <td>
+                        @if (item.IsAvailable)
+                        {
+                            <span class="badge-active">Mevcut</span>
+                        }
+                        else
+                        {
+
+                            <span class="badge-inactive">Tükendi</span>
+                        }
+                    </td>
+                    <td style="font-size:12px;color:#777">@item.Badges</td>
+                    <td style="text-align:right">
+                        <a href="/Menu/ItemEdit?id=@item.Id&catId=@Model.CategoryId" class="btn btn-sm">Düzenle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

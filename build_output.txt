@@ -1,0 +1,17 @@
+﻿  Geri y├╝klenecek projeler belirleniyor...
+  Geri y├╝kleme i├ğin t├╝m projeler g├╝ncel.
+  QrMenu.Domain -> C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.Domain\bin\Debug\net9.0\QrMenu.Domain.dll
+  QrMenu.Application -> C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.Application\bin\Debug\net9.0\QrMenu.Application.dll
+  QrMenu.Infrastructure -> C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.Infrastructure\bin\Debug\net9.0\QrMenu.Infrastructure.dll
+C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.API\Controllers\MenuController.cs(7,7): warning CS0105: 'QrMenu.Infrastructure.Persistence' i├ğin using y├Ânergesi bu ad alan─▒nda daha ├Ânce g├Âr├╝nd├╝ [C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.API\QrMenu.API.csproj]
+  QrMenu.API -> C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.API\bin\Debug\net9.0\QrMenu.API.dll
+
+Olu┼şturma ba┼şar─▒l─▒ oldu.
+
+C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.API\Controllers\MenuController.cs(7,7): warning CS0105: 'QrMenu.Infrastructure.Persistence' i├ğin using y├Ânergesi bu ad alan─▒nda daha ├Ânce g├Âr├╝nd├╝ [C:\Users\Dubai-It\Desktop\Yaz─▒l─▒m Drive\Qr-Men├╝m\src\QrMenu.API\QrMenu.API.csproj]
+    1 Uyar─▒
+    0 Hata
+
+Ge├ğen S├╝re 00:00:06.39
+
+─░┼ş y├╝k├╝ g├╝ncelle┼ştirmeleri var. Daha fazla bilgi i├ğin `dotnet workload list` ├ğal─▒┼şt─▒r─▒n.

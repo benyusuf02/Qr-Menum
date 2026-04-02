@@ -1,0 +1,72 @@
+@page
+@model QrMenu.API.Pages.SuperAdmin.TenantsModel
+@{
+    Layout = "/Pages/SuperAdmin/_Layout.cshtml";
+    ViewData["Title"] = "Tenant Yönetimi";
+}
+
+<div class="card">
+    <div class="card-title">Tüm Tenantlar (@Model.Tenants.Count)</div>
+    @if (!Model.Tenants.Any())
+    {
+        <p style="color:#888;font-size:14px;">Henüz kayıtlı tenant yok.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Restoran Adı</th>
+                    <th>Slug</th>
+                    <th>Plan</th>
+                    <th>Kategori</th>
+                    <th>Ürün</th>
+                    <th>Durum</th>
+                    <th>Kayıt Tarihi</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.Tenants)
+                {
+                    <tr>
+                        <td><strong>@t.Name</strong></td>
+                        <td><code style="font-size:12px;color:#555">@t.Slug</code></td>
+                        <td>
+                            <form method="post" asp-page-handler="UpdatePlan" style="display:flex;gap:4px">
+                                <input type="hidden" name="id" value="@t.Id" />
+                                <select name="planType" style="font-size:12px;padding:2px 4px;border-radius:4px;border:1px solid #ccc;">
+                                    <option value="free" selected="@(t.PlanType == "free")">Free</option>
+                                    <option value="pro" selected="@(t.PlanType == "pro")">Pro</option>
+                                    <option value="premium" selected="@(t.PlanType == "premium")">Premium</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-primary" style="padding:2px 6px;font-size:12px">Kaydet</button>
+                            </form>
+                        </td>
+                        <td>@t.KategoriSayisi</td>
+                        <td>@t.UrunSayisi</td>
+                        <td>
+                            @if (t.IsActive)
+                            {
+                                <span class="badge-active">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="badge-inactive">Pasif</span>
+                            }
+                        </td>
+                        <td style="font-size:12px;color:#888">@t.CreatedAt.ToString("dd.MM.yyyy")</td>
+                        <td>
+                            <form method="post" asp-page-handler="Toggle" style="display:inline">
+                                <input type="hidden" name="id" value="@t.Id" />
+                                <button type="submit" class="btn btn-sm @(t.IsActive ? "btn-danger" : "btn-success")">
+                                    @(t.IsActive ? "Pasifleştir" : "Aktifleştir")
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

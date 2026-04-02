@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] — QR Menü Süper Admin</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; display: flex; min-height: 100vh; }
+
+        #sidebar {
+          width: 220px;
+          background: #1a1a2e;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          flex-shrink: 0;
+          min-height: 100vh;
+        }
+        #sidebar .logo { padding: 20px 18px; font-size: 16px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #sidebar .logo span { font-weight: 400; opacity: 0.6; font-size: 11px; display: block; margin-top: 2px; letter-spacing: .5px; text-transform: uppercase; }
+        #sidebar nav { padding: 12px 0; flex: 1; }
+        #sidebar nav a {
+          display: block; padding: 10px 18px; color: rgba(255,255,255,0.7);
+          text-decoration: none; font-size: 14px; border-left: 3px solid transparent; transition: all .15s;
+        }
+        #sidebar nav a:hover { background: rgba(255,255,255,0.07); color: white; }
+        #sidebar nav a.active { background: rgba(255,255,255,0.1); color: white; border-left-color: #e74c3c; }
+        #sidebar .logout { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; opacity: 0.6; }
+        #sidebar .logout a { color: white; text-decoration: none; }
+
+        #main { flex: 1; display: flex; flex-direction: column; }
+        #topbar { background: white; border-bottom: 1px solid #eee; padding: 14px 24px; font-size: 18px; font-weight: 600; color: #1a1a1a; display: flex; align-items: center; gap: 10px; }
+        #topbar .sa-badge { background: #e74c3c; color: white; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; letter-spacing: .5px; }
+        #content { padding: 24px; flex: 1; }
+
+        .card { background: white; border-radius: 10px; border: 1px solid #eee; padding: 20px; margin-bottom: 20px; }
+        .card-title { font-size: 15px; font-weight: 600; margin-bottom: 16px; color: #1a1a1a; }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: white; border: 1px solid #eee; border-radius: 10px; padding: 20px; }
+        .stat-card .num { font-size: 32px; font-weight: 700; color: #1a1a2e; }
+        .stat-card .lbl { font-size: 13px; color: #888; margin-top: 4px; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th { text-align: left; padding: 8px 12px; background: #f9f9f9; border-bottom: 1px solid #eee; color: #555; font-weight: 500; }
+        td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; color: #1a1a1a; }
+        tr:last-child td { border-bottom: none; }
+
+        .btn { padding: 7px 16px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid #ddd; background: white; color: #333; text-decoration: none; display: inline-block; transition: all .15s; }
+        .btn:hover { background: #f5f5f5; }
+        .btn-primary { background: #0F6E56; color: white; border-color: #0F6E56; }
+        .btn-primary:hover { background: #0a5240; }
+        .btn-danger { background: #c0392b; color: white; border-color: #c0392b; }
+        .btn-danger:hover { background: #a93226; }
+        .btn-success { background: #0F6E56; color: white; border-color: #0F6E56; }
+        .btn-success:hover { background: #0a5240; }
+        .btn-sm { padding: 4px 10px; font-size: 12px; }
+
+        .badge-active   { background: #E1F5EE; color: #085041; padding: 2px 8px; border-radius: 8px; font-size: 11px; }
+        .badge-inactive { background: #fee; color: #c00; padding: 2px 8px; border-radius: 8px; font-size: 11px; }
+        .badge-plan     { background: #eef2ff; color: #3730a3; padding: 2px 8px; border-radius: 8px; font-size: 11px; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div class="logo">
+            QR Menü
+            <span>Süper Admin</span>
+        </div>
+        <nav>
+            <a href="/SuperAdmin/Dashboard" class="@(ViewContext.RouteData.Values["page"]?.ToString() == "/SuperAdmin/Dashboard" ? "active" : "")">Dashboard</a>
+            <a href="/SuperAdmin/Tenants" class="@(ViewContext.RouteData.Values["page"]?.ToString() == "/SuperAdmin/Tenants" ? "active" : "")">Tenant Yönetimi</a>
+        </nav>
+        <div class="logout"><a href="/Auth/Logout">Çıkış Yap</a></div>
+    </div>
+
+    <div id="main">
+        <div id="topbar">
+            <span class="sa-badge">SÜPER ADMİN</span>
+            @ViewData["Title"]
+        </div>
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
+
+</body>
+</html>

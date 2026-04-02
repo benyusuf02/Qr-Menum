@@ -1,0 +1,48 @@
+﻿@page
+@model QrMenu.API.Pages.Menu.CategoriesModel
+@{
+    ViewData["Title"] = "Kategoriler";
+}
+
+<div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div class="card-title" style="margin:0">Kategoriler</div>
+        <a href="/Menu/CategoryEdit" class="btn btn-primary">+ Yeni Kategori</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Kategori Adı</th>
+                <th>Sıra</th>
+                <th>Durum</th>
+                <th>Ürün Sayısı</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cat in Model.Categories)
+            {
+                <tr>
+                    <td>@cat.Name</td>
+                    <td>@cat.SortOrder</td>
+                    <td>
+                        @if (cat.IsActive)
+                        {
+                            <span class="badge-active">Aktif</span>
+                        }
+                        else
+                        {
+
+                            <span class="badge-inactive">Pasif</span>
+                        }
+                    </td>
+                    <td>@cat.ItemCount</td>
+                    <td style="text-align:right">
+                        <a href="/Menu/CategoryEdit?id=@cat.Id" class="btn btn-sm">Düzenle</a>
+                        <a href="/Menu/Items?catId=@cat.Id" class="btn btn-sm" style="margin-left:4px">Ürünler</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,62 @@
+@page
+@model QrMenu.API.Pages.Auth.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş — QR Menü</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .card { background: white; border-radius: 12px; border: 1px solid #eee; padding: 36px 32px; width: 360px; }
+        .logo { text-align: center; margin-bottom: 28px; }
+        .logo h1 { font-size: 22px; color: #0F6E56; }
+        .logo p { font-size: 13px; color: #999; margin-top: 4px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; color: #555; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 9px 12px; border: 1px solid #ddd; border-radius: 7px; font-size: 14px; outline: none; }
+        .form-group input:focus { border-color: #0F6E56; }
+        .btn-login { width: 100%; padding: 10px; background: #0F6E56; color: white; border: none; border-radius: 7px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+        .btn-login:hover { background: #0a5240; }
+        .error { background: #fee; color: #c00; border-radius: 6px; padding: 8px 12px; font-size: 13px; margin-bottom: 14px; }
+        .success { background: #E1F5EE; color: #085041; border-radius: 6px; padding: 8px 12px; font-size: 13px; margin-bottom: 14px; }
+        .register-link { text-align: center; margin-top: 18px; font-size: 13px; color: #888; }
+        .register-link a { color: #0F6E56; text-decoration: none; font-weight: 500; }
+        .register-link a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <h1>QR Menü</h1>
+            <p>Panel Girişi</p>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="success">@Model.SuccessMessage</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="error">@Model.ErrorMessage</div>
+        }
+        <form method="post">
+            <div class="form-group">
+                <label>E-posta</label>
+                <input asp-for="Email" type="email" placeholder="ornek@restoran.com" autofocus />
+            </div>
+            <div class="form-group">
+                <label>Şifre</label>
+                <input asp-for="Password" type="password" placeholder="••••••" />
+            </div>
+            <button type="submit" class="btn-login">Giriş Yap</button>
+        </form>
+        <div class="register-link">
+            Hesabınız yok mu? <a href="/Kayit">Ücretsiz kaydolun</a>
+        </div>
+    </div>
+</body>
+</html>
