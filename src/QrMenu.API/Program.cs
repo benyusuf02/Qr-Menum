@@ -49,6 +49,9 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
+    
+    // Eksiksiz demo verilerini ekle
+    DbInitializer.SeedData(db);
 
     if (!db.Users.Any(u => u.Role == "SuperAdmin"))
     {
